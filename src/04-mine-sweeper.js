@@ -21,8 +21,55 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+function minesweeper(matrix) {
+  let count = 0;
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[0].length; j++) {
+      if (!matrix[i][j]) {
+        if (matrix[i][j - 1] !== undefined && matrix[i][j - 1] === true) {
+          count++;
+        }
+        if (matrix[i][j + 1] !== undefined && matrix[i][j + 1] === true) {
+          count++;
+        }
+        if (i !== 0 && matrix[i - 1][j] !== undefined && matrix[i - 1][j] === true) {
+          count++;
+        }
+        if (i !== matrix.length - 1 && matrix[i + 1][j] !== undefined
+          && matrix[i + 1][j] === true) {
+          count++;
+        }
+
+        if (i !== 0 && matrix[i - 1][j - 1] !== undefined
+          && matrix[i - 1][j - 1] === true) {
+          count++;
+        }
+        if (i !== 0 && matrix[i - 1][j + 1] !== undefined
+          && matrix[i - 1][j + 1] === true) {
+          count++;
+        }
+        if (i !== matrix.length - 1 && matrix[i + 1][j - 1] !== undefined
+          && matrix[i + 1][j - 1] === true) {
+          count++;
+        }
+        if (i !== matrix.length - 1 && matrix[i + 1][j + 1] !== undefined
+          && matrix[i + 1][j + 1] === true) {
+          count++;
+        }
+        /* eslint-disable no-param-reassign */
+        matrix[i][j] = count;
+      }
+      count = 0;
+    }
+  }
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[0].length; j++) {
+      if (matrix[i][j] === true) {
+        matrix[i][j] = 1;
+      }
+    }
+  }
+  return matrix;
 }
 
 module.exports = minesweeper;
