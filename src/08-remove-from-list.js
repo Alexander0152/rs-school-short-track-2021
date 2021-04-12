@@ -19,14 +19,14 @@
 
 function removeKFromList(l, k) {
   let temp = l;
-  while (result !== null) {
-    if (result.value === k) {
-      result.value = result.next.value;
-      result.next = result.next.next;
+  while (temp.next !== null) {
+    if (temp.value === k) {
+      temp.value = temp.next.value;
+      temp.next = temp.next.next;
     }
     temp = temp.next;
   }
-  return temp;
+  return l;
 }
 
 module.exports = removeKFromList;
